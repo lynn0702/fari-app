@@ -26,7 +26,7 @@ import {
   IV3Section,
   IV4Character,
   IV4Page,
-  V3Position
+  V3Position,
 } from "./types";
 
 export const CharacterFactory = {
@@ -82,6 +82,34 @@ export const CharacterFactory = {
     return {
       ...c,
       id: Id.generate(),
+      pages: c.pages.map((page) => {
+        return {
+          ...page,
+          id: Id.generate(),
+          rows: page.rows.map((row) => {
+            return {
+              ...row,
+              columns: row.columns.map((column) => {
+                return {
+                  ...column,
+                  sections: column.sections.map((section) => {
+                    return {
+                      ...section,
+                      id: Id.generate(),
+                      pages: section.blocks.map((block) => {
+                        return {
+                          ...block,
+                          id: Id.generate(),
+                        };
+                      }),
+                    };
+                  }),
+                };
+              }),
+            };
+          }),
+        };
+      }),
       lastUpdated: getUnix(),
       name: `${c?.name} Copy`,
     };
