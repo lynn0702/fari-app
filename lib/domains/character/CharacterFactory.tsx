@@ -139,7 +139,7 @@ export const CharacterFactory = {
         };
       }),
       lastUpdated: getUnix(),
-      name: `${c?.name} Copy`,
+      name: `${character?.name} Copy`,
     };
   },
   makeATemplate(c: ICharacter): Omit<ICharacter, "id"> & { id: undefined } {
