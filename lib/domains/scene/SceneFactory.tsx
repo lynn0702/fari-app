@@ -98,6 +98,12 @@ export const SceneFactory = {
         return {
           ...sub,
           id: Id.generate(),
+          blocks: sub.blocks.map((block) => {
+            return {
+              ...block,
+              id: Id.generate(),
+            };
+          }),
         };
       }),
     };
